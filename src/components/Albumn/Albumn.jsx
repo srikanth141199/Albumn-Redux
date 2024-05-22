@@ -1,8 +1,9 @@
-import { useEffect } from "react"
+
 import "./Albumn.css"
 import { useDispatch, useSelector } from "react-redux"
 import { addAlbum, albumnSelector, dataFetchThunk, fetchAlbums } from "../redux/Reducers/AlbumnReducer";
 import AlbumnItem from "../AlbumnItems/AlbumnItem";
+import { useEffect } from "react";
 
 export default function Albumn() {
     const dispatch = useDispatch();
