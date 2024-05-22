@@ -9,6 +9,9 @@
     margin: 10px;
     height: 200px; /* Set a fixed height for the cards */
     box-sizing: border-box;
+    background-image: url("../../asserts/background.png");
+    background-size: cover;    
+    background-position: center; 
   }
   
   .AlbumnItem .title {

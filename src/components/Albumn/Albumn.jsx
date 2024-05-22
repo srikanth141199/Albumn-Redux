@@ -1,22 +1,27 @@
 import { useEffect } from "react"
 import "./Albumn.css"
 import { useDispatch, useSelector } from "react-redux"
-import { albumnSelector, dataFetchThunk } from "../redux/Reducers/AlbumnReducer";
+import { addAlbum, albumnSelector, dataFetchThunk, fetchAlbums } from "../redux/Reducers/AlbumnReducer";
 import AlbumnItem from "../AlbumnItems/AlbumnItem";
 
 export default function Albumn() {
-
-    const { albumnData } = useSelector(albumnSelector);
-
     const dispatch = useDispatch();
+    const { albums, loading, error } = useSelector(albumnSelector);
 
     useEffect(() => {
-        dispatch(dataFetchThunk());
-    }, [])
+        dispatch(fetchAlbums());
+    }, [dispatch]);
+
+   
+
     return (
-        <div className="AlbumnContainer">{
-            albumnData.map((item, index) => <AlbumnItem key={index} id={item.id} userId={item.userId} title={item.title} />
-            )
-        }</div>
-    )
+        <div className="AlbumnContainer">
+            
+            {loading && <p>Loading...</p>}
+            {error && <p>Error: {error}</p>}
+            {albums.map(album => (
+                <AlbumnItem key={album.id} album={album} />
+            ))}
+        </div>
+    );
 }
